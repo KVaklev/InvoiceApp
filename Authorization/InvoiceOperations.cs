@@ -22,6 +22,7 @@ namespace IdentityApp.Authorization
 
         public static OperationAuthorizationRequirement Rejected =
            new OperationAuthorizationRequirement { Name = Constants.RejectedOperationName };
+
     }
 
     public class Constants
