@@ -1,4 +1,5 @@
 using IdentityApp.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,10 @@ namespace IdentityApp
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+           
             builder.Services.AddRazorPages();
 
             builder.Services.Configure<IdentityOptions>(options => {
@@ -28,6 +32,14 @@ namespace IdentityApp
                 options.Lockout.AllowedForNewUsers = true;
                 options.User.RequireUniqueEmail = true;
 
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                
             });
 
             var app = builder.Build();
