@@ -28,8 +28,6 @@ namespace IdentityApp
                 options.Lockout.AllowedForNewUsers = true;
                 options.User.RequireUniqueEmail = true;
 
-
-
             });
 
             var app = builder.Build();
