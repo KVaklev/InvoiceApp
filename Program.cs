@@ -44,6 +44,7 @@ namespace IdentityApp
             });
 
             builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAuthorizationHandler>();
+            builder.Services.AddSingleton<IAuthorizationHandler, InvoiceManagerAuthorizationHandler>();
 
             var app = builder.Build();
 
