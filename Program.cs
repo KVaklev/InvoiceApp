@@ -2,6 +2,7 @@ using IdentityApp.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using IdentityApp.Authorization;
 
 namespace IdentityApp
 {
@@ -41,6 +42,8 @@ namespace IdentityApp
                 .Build();
                 
             });
+
+            builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAuthorizationHandler>();
 
             var app = builder.Build();
 
